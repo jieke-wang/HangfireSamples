@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Hangfire;
 using Hangfire.Mongo;
@@ -72,6 +73,11 @@ namespace CoreWebApiSample {
 
             app.UseEndpoints (endpoints => {
                 endpoints.MapControllers ();
+            });
+
+            app.Run(async context => 
+            {
+                await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("路由没有命中"));
             });
         }
     }
